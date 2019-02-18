@@ -1,5 +1,5 @@
 package soa.svenwstrl.users
 
-class TeamMember(name: String) {
+abstract class TeamMember(name: String) {
 
 }
