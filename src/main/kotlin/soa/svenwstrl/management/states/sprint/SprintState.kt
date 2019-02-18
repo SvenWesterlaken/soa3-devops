@@ -1,14 +1,40 @@
 package soa.svenwstrl.management.states.sprint
 
-interface SprintState {
+import soa.svenwstrl.management.Sprint
 
-    fun execute()
-    fun finish()
-    fun startPipeline()
-    fun cancel()
-    fun review()
-    fun release()
-    fun close()
-    fun getState(): SprintStateEnum
+abstract class SprintState(val sprint: Sprint) {
+
+    fun execute() {
+        TODO("not implemented")
+    }
+
+    fun finish() {
+        TODO("not implemented")
+    }
+
+    fun startPipeline() {
+        TODO("not implemented")
+    }
+
+    fun cancel() {
+        TODO("not implemented")
+    }
+
+    fun review() {
+        TODO("not implemented")
+    }
+
+    fun release() {
+        TODO("not implemented")
+    }
+    fun close() {
+        TODO("not implemented")
+    }
+
+    abstract fun getState(): Type
+
+    enum class Type {
+        CREATED, EXECUTED, FINISHED, PIPELINE, RELEASED, CANCELED, CLOSED, REVIEW
+    }
 
 }
