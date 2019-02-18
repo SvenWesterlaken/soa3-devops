@@ -1,6 +1,6 @@
-package soa.svenwstrl.management.states
+package soa.svenwstrl.management.states.sprint
 
-class FinishedState: SprintState {
+class ClosedState: SprintState {
     override fun execute() {
         TODO("not implemented")
     }

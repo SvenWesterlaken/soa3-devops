@@ -1,4 +1,4 @@
-package soa.svenwstrl.management.states
+package soa.svenwstrl.management.states.sprint
 
 class ExecutedState: SprintState {
     override fun execute() {

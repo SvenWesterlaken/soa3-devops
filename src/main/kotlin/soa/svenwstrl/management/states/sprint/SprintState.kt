@@ -1,4 +1,4 @@
-package soa.svenwstrl.management.states
+package soa.svenwstrl.management.states.sprint
 
 interface SprintState {
 

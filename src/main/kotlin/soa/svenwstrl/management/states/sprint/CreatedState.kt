@@ -1,6 +1,6 @@
-package soa.svenwstrl.management.states
+package soa.svenwstrl.management.states.sprint
 
-class ReleasedState: SprintState {
+class CreatedState: SprintState {
     override fun execute() {
         TODO("not implemented")
     }
