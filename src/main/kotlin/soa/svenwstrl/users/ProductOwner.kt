@@ -1,4 +1,4 @@
 package soa.svenwstrl.users
 
-class ProductOwner {
+class ProductOwner (name: String) : TeamMember(name) {
 }
