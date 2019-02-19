@@ -8,4 +8,8 @@ class ExecutedState(sprint: Sprint): SprintState(sprint) {
         return SprintState.Type.CANCELED
     }
 
+    override fun finish() {
+        sprint.state = FinishedState(sprint)
+    }
+
 }

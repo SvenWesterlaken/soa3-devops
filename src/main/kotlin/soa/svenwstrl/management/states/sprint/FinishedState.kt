@@ -8,4 +8,12 @@ class FinishedState(sprint: Sprint): SprintState(sprint) {
         return SprintState.Type.FINISHED
     }
 
+    override fun review() {
+        sprint.state = ReviewState(sprint)
+    }
+
+    override fun startPipeline() {
+        sprint.state = PipelineState(sprint)
+    }
+
 }

@@ -8,4 +8,16 @@ class ReleasedState(sprint: Sprint): SprintState(sprint) {
         return SprintState.Type.CANCELED
     }
 
+    override fun cancel() {
+        sprint.state = CanceledState(sprint)
+    }
+
+    override fun startPipeline() {
+        sprint.state = PipelineState(sprint)
+    }
+
+    override fun close() {
+        sprint.state = ClosedState(sprint)
+    }
+
 }

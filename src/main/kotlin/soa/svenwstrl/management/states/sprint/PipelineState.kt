@@ -8,4 +8,8 @@ class PipelineState(sprint: Sprint): SprintState(sprint) {
         return SprintState.Type.PIPELINE
     }
 
+    override fun release() {
+        sprint.state = ReleasedState(sprint)
+    }
+
 }

@@ -8,4 +8,8 @@ class ReviewState(sprint: Sprint): SprintState(sprint) {
         return SprintState.Type.REVIEW
     }
 
+    override fun close() {
+        sprint.state = ClosedState(sprint)
+    }
+
 }

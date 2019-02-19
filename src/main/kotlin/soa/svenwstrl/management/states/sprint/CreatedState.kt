@@ -8,4 +8,8 @@ class CreatedState(sprint: Sprint): SprintState(sprint) {
         return SprintState.Type.CREATED
     }
 
+    override fun execute() {
+        sprint.state = ExecutedState(sprint)
+    }
+
 }

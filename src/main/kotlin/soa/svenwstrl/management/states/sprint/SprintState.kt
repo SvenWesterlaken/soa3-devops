@@ -4,30 +4,31 @@ import soa.svenwstrl.management.Sprint
 
 abstract class SprintState(val sprint: Sprint) {
 
-    fun execute() {
+    open fun execute() {
         TODO("not implemented")
     }
 
-    fun finish() {
+    open fun finish() {
         TODO("not implemented")
     }
 
-    fun startPipeline() {
+    open fun startPipeline() {
         TODO("not implemented")
     }
 
-    fun cancel() {
+    open fun cancel() {
         TODO("not implemented")
     }
 
-    fun review() {
+    open fun review() {
         TODO("not implemented")
     }
 
-    fun release() {
+    open fun release() {
         TODO("not implemented")
     }
-    fun close() {
+
+    open fun close() {
         TODO("not implemented")
     }
 
