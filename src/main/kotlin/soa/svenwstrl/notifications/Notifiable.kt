@@ -1,11 +1,10 @@
 package soa.svenwstrl.notifications
 
 import soa.svenwstrl.users.TeamMember
-import java.util.concurrent.Flow
+import java.util.concurrent.SubmissionPublisher
 
-interface Notifiable: Flow.Publisher<Notifiable> {
+abstract class Notifiable: SubmissionPublisher<Notifiable>() {
 
-    fun getMessage(): String
-    fun getRecievers(): ArrayList<TeamMember>
+    abstract fun getReceivers(): ArrayList<TeamMember>
 
 }

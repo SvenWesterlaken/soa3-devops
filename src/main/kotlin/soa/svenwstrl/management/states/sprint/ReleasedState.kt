@@ -1,35 +1,23 @@
 package soa.svenwstrl.management.states.sprint
 
-class ReleasedState: SprintState {
-    override fun execute() {
-        TODO("not implemented")
-    }
+import soa.svenwstrl.management.Sprint
 
-    override fun finish() {
-        TODO("not implemented")
-    }
+class ReleasedState(sprint: Sprint): SprintState(sprint) {
 
-    override fun startPipeline() {
-        TODO("not implemented")
+    override fun getState(): Type {
+        return SprintState.Type.RELEASED
     }
 
     override fun cancel() {
-        TODO("not implemented")
+        sprint.setState(CanceledState(sprint))
     }
 
-    override fun review() {
-        TODO("not implemented")
-    }
-
-    override fun release() {
-        TODO("not implemented")
+    override fun startPipeline() {
+        sprint.setState(PipelineState(sprint))
     }
 
     override fun close() {
-        TODO("not implemented")
+        sprint.setState(ClosedState(sprint))
     }
 
-    override fun getState(): SprintStateEnum {
-        TODO("not implemented")
-    }
 }
