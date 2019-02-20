@@ -2,8 +2,8 @@ package soa.svenwstrl.management.states.backlogitem
 
 import soa.svenwstrl.management.BacklogItem
 
-class ReviewState(backlogItem: BacklogItem): BacklogItemState(backlogItem) {
+class DoneState(backlogItem: BacklogItem): BacklogItemState(backlogItem) {
     override fun getState(): Type {
-        return BacklogItemState.Type.REVIEW
+        return BacklogItemState.Type.DONE
     }
 }
