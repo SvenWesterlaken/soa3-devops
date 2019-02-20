@@ -2,7 +2,7 @@ package soa.svenwstrl.management.states.sprint
 
 import soa.svenwstrl.management.Sprint
 
-abstract class SprintState(val sprint: Sprint) {
+abstract class SprintState(protected val sprint: Sprint) {
 
     open fun execute() {
         TODO("not implemented")

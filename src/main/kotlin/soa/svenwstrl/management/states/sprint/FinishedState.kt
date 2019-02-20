@@ -9,11 +9,29 @@ class FinishedState(sprint: Sprint): SprintState(sprint) {
     }
 
     override fun review() {
-        sprint.state = ReviewState(sprint)
+        if (sprint.type == Sprint.SprintType.REVIEW) {
+            sprint.setState(ReviewState(sprint))
+        } else {
+            TODO("NOT IMPLEMENTED")
+        }
+
     }
 
     override fun startPipeline() {
-        sprint.state = PipelineState(sprint)
+        if (sprint.type == Sprint.SprintType.RELEASE) {
+            sprint.setState(PipelineState(sprint))
+        } else {
+            TODO("NOT IMPLEMENTED")
+        }
+
+    }
+
+    override fun cancel() {
+        if (sprint.type == Sprint.SprintType.RELEASE) {
+            sprint.setState(CanceledState(sprint))
+        } else {
+            TODO("NOT IMPLEMENTED")
+        }
     }
 
 }

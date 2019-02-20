@@ -9,7 +9,7 @@ class ExecutedState(sprint: Sprint): SprintState(sprint) {
     }
 
     override fun finish() {
-        sprint.state = FinishedState(sprint)
+        sprint.setState(FinishedState(sprint))
     }
 
 }

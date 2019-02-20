@@ -9,7 +9,7 @@ class PipelineState(sprint: Sprint): SprintState(sprint) {
     }
 
     override fun release() {
-        sprint.state = ReleasedState(sprint)
+        sprint.setState(ReleasedState(sprint))
     }
 
 }

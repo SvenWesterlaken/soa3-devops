@@ -5,19 +5,19 @@ import soa.svenwstrl.management.Sprint
 class ReleasedState(sprint: Sprint): SprintState(sprint) {
 
     override fun getState(): Type {
-        return SprintState.Type.CANCELED
+        return SprintState.Type.RELEASED
     }
 
     override fun cancel() {
-        sprint.state = CanceledState(sprint)
+        sprint.setState(CanceledState(sprint))
     }
 
     override fun startPipeline() {
-        sprint.state = PipelineState(sprint)
+        sprint.setState(PipelineState(sprint))
     }
 
     override fun close() {
-        sprint.state = ClosedState(sprint)
+        sprint.setState(ClosedState(sprint))
     }
 
 }

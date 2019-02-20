@@ -9,7 +9,7 @@ class ReviewState(sprint: Sprint): SprintState(sprint) {
     }
 
     override fun close() {
-        sprint.state = ClosedState(sprint)
+        sprint.setState(ClosedState(sprint))
     }
 
 }
