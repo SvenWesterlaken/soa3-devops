@@ -1,6 +1,8 @@
 package soa.svenwstrl.users
 
-abstract class TeamMember(name: String, private var notificationTypes: ArrayList<Notification.Type> = ArrayList()) {
+import soa.svenwstrl.notifications.Notifiable
+
+abstract class TeamMember(name: String, private var notificationTypes: ArrayList<Notifiable.Type> = ArrayList()) {
 
     private var name = name
         get() = field
@@ -8,17 +10,15 @@ abstract class TeamMember(name: String, private var notificationTypes: ArrayList
             field = value
         }
 
-    fun getSelectedNotificationTypes(): ArrayList<Notification.Type> {
+    fun getSelectedNotificationTypes(): ArrayList<Notifiable.Type> {
         return notificationTypes
     }
 
-
-
-    fun addNotificationType(t: Notification.Type): Boolean {
+    fun addNotificationType(t: Notifiable.Type): Boolean {
         return notificationTypes.add(t)
     }
 
-    fun removeNotificationType(t: Notification.Type): Boolean {
+    fun removeNotificationType(t: Notifiable.Type): Boolean {
         return notificationTypes.remove(t)
     }
 

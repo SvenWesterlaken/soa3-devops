@@ -17,7 +17,7 @@ class NotificationHandler: Subscriber<Notifiable> {
         n.getSelectedTypes().forEach { t ->
 
             if (t == EMAIL) {
-                SlackNotifier(n)
+                EmailNotifier(n)
             } else if (t == SLACK) {
                 SlackNotifier(n)
             }
