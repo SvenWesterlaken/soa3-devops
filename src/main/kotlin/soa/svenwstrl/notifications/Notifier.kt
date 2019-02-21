@@ -3,17 +3,17 @@ package soa.svenwstrl.notifications
 import java.util.concurrent.Flow
 import java.util.concurrent.Flow.Subscriber
 
-abstract class Notifier: Subscriber<Notification>{
+abstract class Notifier: Subscriber<Notifiable>{
     protected lateinit var subscription: Flow.Subscription
-    protected lateinit var notification: Notification
+    protected lateinit var notifiable: Notifiable
 
     override fun onComplete() {
         System.out.println("Done")
     }
 
-    override fun onNext(n: Notification) {
-        this.notification = n
-//        n.getReceivers().forEach { r -> composeMessage(r) }
+    override fun onNext(n: Notifiable) {
+        this.notifiable = n
+        this.createMessage()
     }
 
     override fun onSubscribe(subscription: Flow.Subscription) {
@@ -25,10 +25,19 @@ abstract class Notifier: Subscriber<Notification>{
         throwable.printStackTrace()
     }
 
-//    // Template Method
-//    fun composeMessage(teamMember: TeamMember) {
-//        getAddress()
-//    }
-//
-//    abstract fun sendMessage()
+    // Template Method
+    fun createMessage() {
+        val addressInfo = getAddressInfo()
+        val subject = getSubject()
+        val message = composeMessage()
+
+        sendMessage(addressInfo, subject, message)
+    }
+
+    abstract fun getAddressInfo(): Any
+    open fun getSubject(): String? {
+        return null
+    }
+    abstract fun composeMessage(): String
+    abstract fun sendMessage(addressInfo: Any, subject: String?, message: String)
 }

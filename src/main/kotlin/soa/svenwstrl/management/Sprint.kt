@@ -25,6 +25,8 @@ class Sprint(val type: SprintType, name: String, startDate: Date, endDate: Date,
         set(value) {
             if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
                 field = value
+            } else {
+                TODO("Not Implemented")
             }
         }
 
@@ -33,6 +35,8 @@ class Sprint(val type: SprintType, name: String, startDate: Date, endDate: Date,
         set(value) {
             if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
                 field = value
+            } else {
+                TODO("Not Implemented")
             }
         }
 
@@ -41,6 +45,8 @@ class Sprint(val type: SprintType, name: String, startDate: Date, endDate: Date,
         set(value) {
             if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
                 field = value
+            } else {
+                TODO("Not Implemented")
             }
         }
 
@@ -52,9 +58,6 @@ class Sprint(val type: SprintType, name: String, startDate: Date, endDate: Date,
         return this.state.getState()
     }
 
-    override fun getReceivers(): ArrayList<TeamMember> {
-        return members
-    }
 
     fun execute() {
         this.state.execute()

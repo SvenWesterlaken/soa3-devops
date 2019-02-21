@@ -2,14 +2,11 @@ package soa.svenwstrl.notifications
 
 import soa.svenwstrl.users.TeamMember
 
-class Notification(private val receivers: Sequence<TeamMember>) {
+class Notification(private val receivers: Sequence<TeamMember>, private val type: Type) {
 
-    private var message: String = ""
-        get() = field
-        set(value) {
-            field = value
-        }
-
+    fun getType(): Type {
+        return this.type
+    }
 
     fun getReceivers(): Sequence<TeamMember> {
         return this.receivers
