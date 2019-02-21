@@ -1,9 +1,13 @@
 package soa.svenwstrl.notifications
 
-abstract class Notifier(protected var notifiable: Notifiable) {
+abstract class Notifier(protected val notifiable: Notifiable) {
+
+    init {
+        handleMessage()
+    }
 
     // Template Method
-    fun createMessage() {
+    fun handleMessage() {
         val addressInfo = getAddressInfo()
         val subject = getSubject()
         val message = composeMessage()
