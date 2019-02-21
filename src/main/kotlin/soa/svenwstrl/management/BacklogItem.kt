@@ -24,21 +24,20 @@ class BacklogItem(val type: BacklogItemType): Notifiable() {
 
     fun setDoing() {
         this.state.setDoing()
-        this.submit(this)
+
     }
 
     fun review() {
         this.state.setReview()
-        this.submit(this)
     }
 
     fun setDone() {
         this.state.setDone()
-        this.submit(this)
     }
 
     fun setState(state: BacklogItemState) {
         this.state = state
+        this.submit(this)
     }
 
 
