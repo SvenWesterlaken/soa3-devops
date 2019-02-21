@@ -1,29 +1,6 @@
 package soa.svenwstrl.notifications
 
-import java.util.concurrent.Flow
-import java.util.concurrent.Flow.Subscriber
-
-abstract class Notifier: Subscriber<Notifiable>{
-    protected lateinit var subscription: Flow.Subscription
-    protected lateinit var notifiable: Notifiable
-
-    override fun onComplete() {
-        System.out.println("Done")
-    }
-
-    override fun onNext(n: Notifiable) {
-        this.notifiable = n
-        this.createMessage()
-    }
-
-    override fun onSubscribe(subscription: Flow.Subscription) {
-        this.subscription = subscription
-        subscription.request(1)
-    }
-
-    override fun onError(throwable: Throwable) {
-        throwable.printStackTrace()
-    }
+abstract class Notifier(protected var notifiable: Notifiable) {
 
     // Template Method
     fun createMessage() {
