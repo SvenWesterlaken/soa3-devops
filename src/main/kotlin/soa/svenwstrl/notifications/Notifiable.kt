@@ -22,8 +22,8 @@ abstract class Notifiable(): SubmissionPublisher<Notifiable>() {
         this.types.remove(t)
     }
 
-    fun getAllNotificationTypes(): ArrayList<Notification.Type> {
-        return Notification.Type.values().toCollection(ArrayList())
+    fun getAllNotificationTypes(): ArrayList<Notifiable.Type> {
+        return Notifiable.Type.values().toCollection(ArrayList())
     }
 
     enum class Type {

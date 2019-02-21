@@ -14,8 +14,4 @@ class EmailNotifier(notifiable: Notifiable): Notifier(notifiable) {
         TODO("not implemented")
     }
 
-//    override fun onNext(item: Notifiable) {
-//        subscription.request(1);
-//    }
-
 }
