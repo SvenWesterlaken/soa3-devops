@@ -1,5 +1,7 @@
 package soa.svenwstrl.notifications
 
+import soa.svenwstrl.notifications.Notifiable.Type.EMAIL
+import soa.svenwstrl.notifications.Notifiable.Type.SLACK
 import java.util.concurrent.Flow
 import java.util.concurrent.Flow.Subscriber
 
@@ -11,7 +13,17 @@ class NotificationHandler: Subscriber<Notifiable> {
     }
 
     override fun onNext(n: Notifiable) {
-        //Factory method
+
+        n.getSelectedTypes().forEach { t ->
+
+            if (t == EMAIL) {
+                SlackNotifier(n)
+            } else if (t == SLACK) {
+                SlackNotifier(n)
+            }
+
+        }
+
     }
 
     override fun onSubscribe(subscription: Flow.Subscription) {
