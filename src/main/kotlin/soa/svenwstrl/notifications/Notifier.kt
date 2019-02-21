@@ -1,34 +1,20 @@
 package soa.svenwstrl.notifications
 
-import java.util.concurrent.Flow
-import java.util.concurrent.Flow.Subscriber
+abstract class Notifier(protected var notifiable: Notifiable) {
 
-abstract class Notifier: Subscriber<Notification>{
-    protected lateinit var subscription: Flow.Subscription
-    protected lateinit var notification: Notification
+    // Template Method
+    fun createMessage() {
+        val addressInfo = getAddressInfo()
+        val subject = getSubject()
+        val message = composeMessage()
 
-    override fun onComplete() {
-        System.out.println("Done")
+        sendMessage(addressInfo, subject, message)
     }
 
-    override fun onNext(n: Notification) {
-        this.notification = n
-//        n.getReceivers().forEach { r -> composeMessage(r) }
+    abstract fun getAddressInfo(): Any
+    open fun getSubject(): String? {
+        return null
     }
-
-    override fun onSubscribe(subscription: Flow.Subscription) {
-        this.subscription = subscription
-        subscription.request(1)
-    }
-
-    override fun onError(throwable: Throwable) {
-        throwable.printStackTrace()
-    }
-
-//    // Template Method
-//    fun composeMessage(teamMember: TeamMember) {
-//        getAddress()
-//    }
-//
-//    abstract fun sendMessage()
+    abstract fun composeMessage(): String
+    abstract fun sendMessage(addressInfo: Any, subject: String?, message: String)
 }

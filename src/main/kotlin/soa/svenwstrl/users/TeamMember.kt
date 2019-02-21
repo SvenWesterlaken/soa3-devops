@@ -1,7 +1,5 @@
 package soa.svenwstrl.users
 
-import soa.svenwstrl.notifications.Notification
-
 abstract class TeamMember(name: String, private var notificationTypes: ArrayList<Notification.Type> = ArrayList()) {
 
     private var name = name
