@@ -11,7 +11,7 @@ import java.util.*
 import java.util.concurrent.Flow
 import kotlin.collections.ArrayList
 
-class Sprint(val type: SprintType, private var name: String, private var startDate: Date, private var endDate: Date, val pipeline: Pipeline): Notifiable(), Flow.Subscriber<Boolean> {
+class Sprint(private val type: SprintType, private var name: String, private var startDate: Date, private var endDate: Date, val pipeline: Pipeline): Notifiable(), Flow.Subscriber<Boolean> {
 
     private val backlog: SprintBacklog = SprintBacklog()
     private var state: SprintState = CreatedState(this)
@@ -61,6 +61,10 @@ class Sprint(val type: SprintType, private var name: String, private var startDa
 
     fun getReviewSummary(): File? {
         return this.reviewSummary
+    }
+
+    fun getSprintType(): SprintType {
+        return this.type
     }
 
     fun getStateType(): SprintState.Type {
