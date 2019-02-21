@@ -8,12 +8,12 @@ import soa.svenwstrl.users.TeamMember
 
 class Project(var name: String, private val productOwner: ProductOwner) {
 
-    val productBacklog: ProductBacklog = ProductBacklog()
-    val sprintBacklogs: ArrayList<SprintBacklog> = ArrayList()
-    val forum: Forum = Forum()
-    val members: ArrayList<TeamMember> = ArrayList()
+        val productBacklog: ProductBacklog = ProductBacklog()
+        val sprintBacklogs: ArrayList<SprintBacklog> = ArrayList()
+        val forum: Forum = Forum()
+        val members: ArrayList<TeamMember> = ArrayList()
 
-    fun main(args: Array<String>) {
+        fun main(args: Array<String>) {
         println("Start Project");
     }
 

@@ -1,23 +1,24 @@
 package soa.svenwstrl.notifications
 
-import java.util.concurrent.Flow
-import java.util.concurrent.Flow.Subscriber
+abstract class Notifier(protected val notifiable: Notifiable) {
 
-abstract class Notifier: Subscriber<Any>{
-
-    override fun onComplete() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    init {
+        handleMessage()
     }
 
-    override fun onSubscribe(subscription: Flow.Subscription?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    // Template Method
+    fun handleMessage() {
+        val addressInfo = getAddressInfo()
+        val subject = getSubject()
+        val message = composeMessage()
+
+        sendMessage(addressInfo, subject, message)
     }
 
-    override fun onNext(item: Any?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    abstract fun getAddressInfo(): Any
+    open fun getSubject(): String? {
+        return null
     }
-
-    override fun onError(throwable: Throwable?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    abstract fun composeMessage(): String
+    abstract fun sendMessage(addressInfo: Any, subject: String?, message: String)
 }

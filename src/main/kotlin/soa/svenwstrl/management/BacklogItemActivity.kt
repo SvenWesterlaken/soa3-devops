@@ -1,4 +1,4 @@
 package soa.svenwstrl.management
 
-class BacklogItemActivity {
+class BacklogItemActivity(var name: String){
 }
