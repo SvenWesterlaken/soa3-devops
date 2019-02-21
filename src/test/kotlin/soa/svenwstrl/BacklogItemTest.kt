@@ -24,8 +24,5 @@ class BacklogItemTest {
         backLogItem.setState(DoingState(backLogItem))
         backLogItem.review()
 
-        Assertions.assertThat(pipeline.hasSubscribers())
-        Assertions.assertThat(sprint.getStateType()).isEqualTo(SprintState.Type.RELEASED)
-
     }
 }
