@@ -9,7 +9,7 @@ class FinishedState(sprint: Sprint): SprintState(sprint) {
     }
 
     override fun review() {
-        if (sprint.type == Sprint.SprintType.REVIEW) {
+        if (sprint.getSprintType() == Sprint.SprintType.REVIEW) {
             sprint.setState(ReviewState(sprint))
         } else {
             TODO("NOT IMPLEMENTED")
@@ -18,7 +18,7 @@ class FinishedState(sprint: Sprint): SprintState(sprint) {
     }
 
     override fun startPipeline() {
-        if (sprint.type == Sprint.SprintType.RELEASE) {
+        if (sprint.getSprintType() == Sprint.SprintType.RELEASE) {
             sprint.setState(PipelineState(sprint))
         } else {
             TODO("NOT IMPLEMENTED")
@@ -27,7 +27,7 @@ class FinishedState(sprint: Sprint): SprintState(sprint) {
     }
 
     override fun cancel() {
-        if (sprint.type == Sprint.SprintType.RELEASE) {
+        if (sprint.getSprintType() == Sprint.SprintType.RELEASE) {
             sprint.setState(CanceledState(sprint))
         } else {
             TODO("NOT IMPLEMENTED")

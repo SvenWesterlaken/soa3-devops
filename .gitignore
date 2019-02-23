@@ -210,3 +210,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/git,java,kotlin,windows,webstorm,intellij
+
+target/

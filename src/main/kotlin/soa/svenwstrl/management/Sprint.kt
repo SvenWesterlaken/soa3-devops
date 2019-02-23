@@ -11,47 +11,60 @@ import java.util.*
 import java.util.concurrent.Flow
 import kotlin.collections.ArrayList
 
-class Sprint(val type: SprintType, name: String, startDate: Date, endDate: Date, val pipeline: Pipeline): Notifiable(), Flow.Subscriber<Boolean> {
+class Sprint(private val type: SprintType, private var name: String, private var startDate: Date, private var endDate: Date, val pipeline: Pipeline): Notifiable(), Flow.Subscriber<Boolean> {
 
     private val backlog: SprintBacklog = SprintBacklog()
     private var state: SprintState = CreatedState(this)
     private var members: ArrayList<TeamMember> = ArrayList()
     private lateinit var pipelineSubscription: Flow.Subscription
     private var reviewSummary: File? = null
-        get() = field
-
-    private var name: String = name
-        get() = field
-        set(value) {
-            if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
-                field = value
-            } else {
-                TODO("Not Implemented")
-            }
-        }
-
-    private var startDate: Date = startDate
-        get() = field
-        set(value) {
-            if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
-                field = value
-            } else {
-                TODO("Not Implemented")
-            }
-        }
-
-    private var endDate: Date = endDate
-        get() = field
-        set(value) {
-            if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
-                field = value
-            } else {
-                TODO("Not Implemented")
-            }
-        }
 
     init {
         this.pipeline.subscribe(this)
+    }
+
+    fun getName(): String {
+        return this.name
+    }
+
+    fun setName(value: String) {
+        if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
+            this.name = value
+        } else {
+            TODO("Not Implemented")
+        }
+    }
+
+    fun getStartDate(): Date {
+        return this.startDate
+    }
+
+    fun setStartDate(value: Date) {
+        if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
+            this.startDate = value
+        } else {
+            TODO("Not Implemented")
+        }
+    }
+
+    fun getEndDate(): Date {
+        return this.endDate
+    }
+
+    fun setEndDate(value: Date) {
+        if (this.getStateType() != PIPELINE && this.getStateType() != EXECUTED) {
+            this.endDate = value
+        } else {
+            TODO("Not Implemented")
+        }
+    }
+
+    fun getReviewSummary(): File? {
+        return this.reviewSummary
+    }
+
+    fun getSprintType(): SprintType {
+        return this.type
     }
 
     fun getStateType(): SprintState.Type {

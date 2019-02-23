@@ -5,7 +5,7 @@ import soa.svenwstrl.management.Sprint
 class ExecutedState(sprint: Sprint): SprintState(sprint) {
 
     override fun getState(): Type {
-        return SprintState.Type.CANCELED
+        return SprintState.Type.EXECUTED
     }
 
     override fun finish() {
