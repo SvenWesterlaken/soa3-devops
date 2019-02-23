@@ -71,6 +71,11 @@ class Sprint(private val type: SprintType, private var name: String, private var
         return this.state.getState()
     }
 
+    fun getDataFromSprint(): String {
+        //for example burndownchart, teammembers, teamvelocity, etc
+        return "Data from Sprint";
+    }
+
 
     fun execute() {
         this.state.execute()
