@@ -2,11 +2,10 @@ package soa.svenwstrl.devops
 
 import java.util.concurrent.SubmissionPublisher
 
-class Pipeline : SubmissionPublisher<Boolean>() {
+class Pipeline : SubmissionPublisher<Boolean>(), PipelineExecution {
 
-    fun execute() {
+    override fun execute() {
         this.submit(true)
     }
-
 
 }
