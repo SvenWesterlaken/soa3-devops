@@ -126,8 +126,10 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.execute() }
 
-            assertThat(verify(exactly = 1) { spyState.execute() })
+            verify(exactly = 1) { spyState.execute() }
             confirmVerified()
+            assertThat(true).isTrue()
+
         }
 
         @Test
@@ -137,8 +139,9 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.finish() }
 
-            assertThat(verify(exactly = 1) { spyState.finish() })
+            verify(exactly = 1) { spyState.finish() }
             confirmVerified()
+            assertThat(true).isTrue()
         }
 
         @Test
@@ -148,8 +151,9 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.startPipeline() }
 
-            assertThat(verify(exactly = 1) { spyState.startPipeline() })
+            verify(exactly = 1) { spyState.startPipeline() }
             confirmVerified()
+            assertThat(true).isTrue()
         }
 
         @Test
@@ -159,8 +163,9 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.cancel() }
 
-            assertThat(verify(exactly = 1) { spyState.cancel() })
+            verify(exactly = 1) { spyState.cancel() }
             confirmVerified()
+            assertThat(true).isTrue()
         }
 
         @Test
@@ -170,8 +175,9 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.release() }
 
-            assertThat(verify(exactly = 1) { spyState.release() })
+            verify(exactly = 1) { spyState.release() }
             confirmVerified()
+            assertThat(true).isTrue()
         }
     }
 
@@ -200,6 +206,13 @@ class SprintTest {
             assertThat(sprint.getTeamMembers()).hasSize(0)
         }
 
+    }
+
+    @Test
+    fun `Get Sprint Type`() {
+        val sprint = Sprint(Sprint.SprintType.REVIEW, "TestSprint", Date(), Date(), pipeline)
+        assertThat(sprint.getSprintType()).isEqualTo(Sprint.SprintType.REVIEW)
+        assertThat(sprint.getSprintType()).isNotEqualTo(Sprint.SprintType.RELEASE)
     }
 
 
