@@ -115,13 +115,18 @@ class SprintTest {
         }
 
         @Test
+        fun getStateType() {
+            assertThat(this.sprint.getStateType()).isEqualTo(SprintState.Type.CREATED)
+        }
+
+        @Test
         fun execute() {
             val spyState = spyk(CreatedState(sprint))
 
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.execute() }
 
-            verify(exactly = 1) { spyState.execute() }
+            assertThat(verify(exactly = 1) { spyState.execute() })
             confirmVerified()
         }
 
@@ -132,7 +137,7 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.finish() }
 
-            verify(exactly = 1) { spyState.finish() }
+            assertThat(verify(exactly = 1) { spyState.finish() })
             confirmVerified()
         }
 
@@ -143,7 +148,7 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.startPipeline() }
 
-            verify(exactly = 1) { spyState.startPipeline() }
+            assertThat(verify(exactly = 1) { spyState.startPipeline() })
             confirmVerified()
         }
 
@@ -154,7 +159,7 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.cancel() }
 
-            verify(exactly = 1) { spyState.cancel() }
+            assertThat(verify(exactly = 1) { spyState.cancel() })
             confirmVerified()
         }
 
@@ -165,7 +170,7 @@ class SprintTest {
             this.sprint.setState(spyState)
             Assertions.catchThrowable { sprint.release() }
 
-            verify(exactly = 1) { spyState.release() }
+            assertThat(verify(exactly = 1) { spyState.release() })
             confirmVerified()
         }
     }
