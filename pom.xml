@@ -16,14 +16,11 @@
         <kotlin.code.style>official</kotlin.code.style>
         <junit.jupiter.version>5.3.2</junit.jupiter.version>
 
-        <jacoco.report.ut>${project.build.directory}/jacoco-ut.exec</jacoco.report.ut>
-        <jacoco.report.it>${project.build.directory}/jacoco-it.exec</jacoco.report.it>
+        <!--<jacoco.report.ut>${project.build.directory}/jacoco-ut.exec</jacoco.report.ut>-->
 
         <sonar.language>kotlin</sonar.language>
-        <sonar.sources>src/main/kotlin</sonar.sources>
-        <sonar.tests>src/test/kotlin</sonar.tests>
         <sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
-        <sonar.jacoco.reportPaths>${jacoco.report.ut},${jacoco.report.it}</sonar.jacoco.reportPaths>
+        <!--<sonar.jacoco.reportPaths>${jacoco.report.ut}</sonar.jacoco.reportPaths>-->
 
         <jacoco.plugin.version>0.8.1</jacoco.plugin.version>
     </properties>
@@ -102,19 +99,19 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.plugin.version}</version>
-                <executions>
-                    <!-- Jacoco for Unit-Tests -->
-                    <execution>
-                        <id>jacoco-agent-ut</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                        <configuration>
-                            <destFile>${jacoco.report.ut}</destFile>
-                            <propertyName>surefireArgLine</propertyName>
-                        </configuration>
-                    </execution>
-                </executions>
+                <!--<executions>-->
+                    <!--&lt;!&ndash; Jacoco for Unit-Tests &ndash;&gt;-->
+                    <!--<execution>-->
+                        <!--<id>jacoco-agent-ut</id>-->
+                        <!--<goals>-->
+                            <!--<goal>prepare-agent</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<destFile>${jacoco.report.ut}</destFile>-->
+                            <!--<propertyName>surefireArgLine</propertyName>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
