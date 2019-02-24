@@ -70,7 +70,6 @@ class Sprint(private val type: SprintType, private var name: String, private var
         return "Data from Sprint";
     }
 
-
     fun execute() {
         this.state.execute()
     }

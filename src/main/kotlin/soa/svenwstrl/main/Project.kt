@@ -6,14 +6,14 @@ import soa.svenwstrl.management.SprintBacklog
 import soa.svenwstrl.users.ProductOwner
 import soa.svenwstrl.users.TeamMember
 
-class Project(var name: String, private val productOwner: ProductOwner) {
+class Project(var name: String, private var productOwner: ProductOwner) {
 
-        val productBacklog: ProductBacklog = ProductBacklog()
-        val sprintBacklogs: ArrayList<SprintBacklog> = ArrayList()
-        val forum: Forum = Forum()
-        val members: ArrayList<TeamMember> = ArrayList()
+    private val productBacklog: ProductBacklog = ProductBacklog()
+    private val sprintBacklogs: ArrayList<SprintBacklog> = ArrayList()
+    val forum: Forum = Forum()
+    val members: ArrayList<TeamMember> = ArrayList()
 
-        fun main(args: Array<String>) {
+    fun main(args: Array<String>) {
         println("Start Project");
     }
 
@@ -23,5 +23,21 @@ class Project(var name: String, private val productOwner: ProductOwner) {
 
     fun removeSprintBacklog(sbl: SprintBacklog) {
         sprintBacklogs.remove(sbl);
+    }
+
+    fun getSprintBacklogs(): ArrayList<SprintBacklog> {
+        return this.sprintBacklogs
+    }
+
+    fun setProductOwner(po: ProductOwner) {
+        this.productOwner = po
+    }
+
+    fun getProductOwner(): ProductOwner {
+        return this.productOwner
+    }
+
+    fun getProductBacklog(): ProductBacklog {
+        return this.productBacklog
     }
 }

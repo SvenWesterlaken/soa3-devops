@@ -24,6 +24,12 @@ abstract class TeamMember(private var name: String, private var notificationType
         return notificationTypes.remove(t)
     }
 
+    abstract fun getRole(): Role
+
+    enum class Role {
+        DEVELOPER, PRODUCT_OWNER, SCRUM_MASTER
+    }
+
 
 
 }
