@@ -1,14 +1,20 @@
 package soa.svenwstrl
 
+import io.mockk.confirmVerified
 import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.catchThrowable
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import soa.svenwstrl.devops.Pipeline
 import soa.svenwstrl.management.Sprint
 import soa.svenwstrl.management.states.sprint.*
+import soa.svenwstrl.users.TeamMember
 import java.io.File
 import java.util.*
 
@@ -16,32 +22,12 @@ import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class SprintTest {
-
-//    @Test
-//    fun Notifications() {
-//
-//        val pipeline = spyk(Pipeline())
-//
-//        val sprint = Sprint(Sprint.SprintType.RELEASE, "TestSprint", Date(), Date(), pipeline)
-//
-//        sprint.setState(ExecutedState(sprint))
-//        sprint.finish()
-//        sprint.startPipeline()
-//
-//        verify(exactly = 1) { pipeline.submit(true) }
-//
-//        confirmVerified()
-//
-//        assertThat(pipeline.hasSubscribers())
-//        assertThat(sprint.getStateType()).isEqualTo(SprintState.Type.RELEASED)
-//
-//    }
+    private val pipeline: Pipeline = mockk(relaxed = true)
 
     @Nested
     inner class `Changing Properties` {
         val currentDate = Date()
         val newDate = Date(9999999999999999)
-        private val pipeline: Pipeline = mockk(relaxed = true)
 
         @Test
         fun `Updates possible`() {
@@ -91,7 +77,6 @@ class SprintTest {
 
     @Nested
     inner class `Closing sprint` {
-        private val pipeline: Pipeline = mockk(relaxed = true)
 
         @Test
         fun `Upload summary (Review)`() {
@@ -115,6 +100,99 @@ class SprintTest {
 
             assertThat(sprint.getReviewSummary()).isNull()
             assertThat(sprint.getStateType()).isEqualTo(SprintState.Type.CLOSED)
+        }
+
+    }
+
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    inner class `State Transitions`() {
+        private lateinit var sprint: Sprint
+
+        @BeforeEach
+        fun createSprint() {
+            this.sprint = Sprint(Sprint.SprintType.REVIEW, "TestSprint", Date(), Date(), pipeline)
+        }
+
+        @Test
+        fun execute() {
+            val spyState = spyk(CreatedState(sprint))
+
+            this.sprint.setState(spyState)
+            Assertions.catchThrowable { sprint.execute() }
+
+            verify(exactly = 1) { spyState.execute() }
+            confirmVerified()
+        }
+
+        @Test
+        fun finish() {
+            val spyState = spyk(CreatedState(sprint))
+
+            this.sprint.setState(spyState)
+            Assertions.catchThrowable { sprint.finish() }
+
+            verify(exactly = 1) { spyState.finish() }
+            confirmVerified()
+        }
+
+        @Test
+        fun startPipeline() {
+            val spyState = spyk(CreatedState(sprint))
+
+            this.sprint.setState(spyState)
+            Assertions.catchThrowable { sprint.startPipeline() }
+
+            verify(exactly = 1) { spyState.startPipeline() }
+            confirmVerified()
+        }
+
+        @Test
+        fun cancel() {
+            val spyState = spyk(CreatedState(sprint))
+
+            this.sprint.setState(spyState)
+            Assertions.catchThrowable { sprint.cancel() }
+
+            verify(exactly = 1) { spyState.cancel() }
+            confirmVerified()
+        }
+
+        @Test
+        fun release() {
+            val spyState = spyk(CreatedState(sprint))
+
+            this.sprint.setState(spyState)
+            Assertions.catchThrowable { sprint.release() }
+
+            verify(exactly = 1) { spyState.release() }
+            confirmVerified()
+        }
+    }
+
+    @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    inner class `Associated Member Management`() {
+        private lateinit var sprint: Sprint
+
+        @BeforeEach
+        fun createSprint() {
+            this.sprint = Sprint(Sprint.SprintType.REVIEW, "TestSprint", Date(), Date(), pipeline)
+        }
+
+        @Test
+        fun `Add & remove member`() {
+            val member = mockk<TeamMember>()
+
+            this.sprint.addTeamMember(member)
+
+            assertThat(sprint.getTeamMembers()).isNotEmpty()
+            assertThat(sprint.getTeamMembers()).hasSize(1)
+
+            this.sprint.removeTeamMember(member)
+
+            assertThat(sprint.getTeamMembers()).isEmpty()
+            assertThat(sprint.getTeamMembers()).hasSize(0)
         }
 
     }

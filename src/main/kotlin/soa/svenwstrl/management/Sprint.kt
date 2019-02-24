@@ -16,6 +16,8 @@ class Sprint(private val type: SprintType, private var name: String, private var
     private var state: SprintState = CreatedState(this)
     private var members: ArrayList<TeamMember> = ArrayList()
     private var reviewSummary: File? = null
+    // Remember the index of scrum master in members list
+    private var scrumMasterIndex: Int = -1
 
     fun getName(): String {
         return this.name
@@ -108,11 +110,16 @@ class Sprint(private val type: SprintType, private var name: String, private var
     }
 
     fun addTeamMember(m: TeamMember) {
+        //TODO: This needs still needs some logic when teammember is a scrummaster (only 1 allowed)
         this.members.add(m)
     }
 
     fun removeTeamMember(m: TeamMember) {
         this.members.remove(m)
+    }
+
+    fun getTeamMembers(): ArrayList<TeamMember> {
+        return this.members
     }
 
     enum class SprintType {
