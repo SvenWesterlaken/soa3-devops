@@ -2,7 +2,7 @@ package soa.svenwstrl.notifications
 
 class SlackNotifier(notifiable: Notifiable): Notifier(notifiable) {
 
-    override fun getAddressInfo(): Any {
+    override fun gatherAddressInfo(): Any {
         TODO("not implemented")
     }
 
@@ -10,7 +10,7 @@ class SlackNotifier(notifiable: Notifiable): Notifier(notifiable) {
         TODO("not implemented")
     }
 
-    override fun sendMessage(addressInfo: Any, subject: String?, message: String) {
+    override fun sendMessage() {
         TODO("not implemented")
     }
 

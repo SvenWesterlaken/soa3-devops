@@ -1,24 +1,23 @@
 package soa.svenwstrl.notifications
 
 abstract class Notifier(protected val notifiable: Notifiable) {
-
-    init {
-        handleMessage()
-    }
+    protected lateinit var addressInfo: Any
+    protected var subject: String? = null
+    protected lateinit var message: String
 
     // Template Method
     fun handleMessage() {
-        val addressInfo = getAddressInfo()
-        val subject = getSubject()
-        val message = composeMessage()
+        addressInfo = gatherAddressInfo()
+        subject = gatherSubject()
+        message = composeMessage()
 
-        sendMessage(addressInfo, subject, message)
+        sendMessage()
     }
 
-    abstract fun getAddressInfo(): Any
-    open fun getSubject(): String? {
-        return null
+    abstract fun gatherAddressInfo(): Any
+    open fun gatherSubject(): String? {
+        return this.subject
     }
     abstract fun composeMessage(): String
-    abstract fun sendMessage(addressInfo: Any, subject: String?, message: String)
+    abstract fun sendMessage()
 }

@@ -16,12 +16,15 @@ class NotificationHandler: Subscriber<Notifiable> {
 
         n.getSelectedTypes().forEach { t ->
 
+            var notifier: Notifier? = null
+
             if (t == EMAIL) {
-                EmailNotifier(n)
+                notifier = EmailNotifier(n)
             } else if (t == SLACK) {
-                SlackNotifier(n)
+                notifier = SlackNotifier(n)
             }
 
+            notifier!!.handleMessage()
         }
 
     }

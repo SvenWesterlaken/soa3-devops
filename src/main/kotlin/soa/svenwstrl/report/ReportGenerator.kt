@@ -2,7 +2,6 @@ package soa.svenwstrl.report;
 
 import soa.svenwstrl.management.Sprint
 import java.time.LocalDateTime
-import java.util.*
 
 abstract class ReportGenerator(val sprint: Sprint) {
     private lateinit var sprintData: String
@@ -17,7 +16,7 @@ abstract class ReportGenerator(val sprint: Sprint) {
     }
 
     private fun retrieveData() {
-       sprintData = this.sprint.getDataFromSprint()
+        sprintData = this.sprint.getDataFromSprint()
         date = LocalDateTime.now()
     }
 

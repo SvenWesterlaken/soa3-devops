@@ -2,13 +2,15 @@ package soa.svenwstrl.users
 
 import soa.svenwstrl.notifications.Notifiable
 
-abstract class TeamMember(name: String, private var notificationTypes: ArrayList<Notifiable.Type> = ArrayList()) {
+abstract class TeamMember(private var name: String, private var notificationTypes: ArrayList<Notifiable.Type> = ArrayList()) {
 
-    private var name = name
-        get() = field
-        set(value) {
-            field = value
-        }
+    fun setName(n: String) {
+        this.name = n
+    }
+
+    fun getName(): String {
+        return this.name
+    }
 
     fun getSelectedNotificationTypes(): ArrayList<Notifiable.Type> {
         return notificationTypes

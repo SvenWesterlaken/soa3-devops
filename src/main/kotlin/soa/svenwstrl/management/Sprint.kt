@@ -8,20 +8,14 @@ import soa.svenwstrl.notifications.Notifiable
 import soa.svenwstrl.users.TeamMember
 import java.io.File
 import java.util.*
-import java.util.concurrent.Flow
 import kotlin.collections.ArrayList
 
-class Sprint(private val type: SprintType, private var name: String, private var startDate: Date, private var endDate: Date, val pipeline: Pipeline): Notifiable(), Flow.Subscriber<Boolean> {
+class Sprint(private val type: SprintType, private var name: String, private var startDate: Date, private var endDate: Date, val pipeline: Pipeline): Notifiable() {
 
     private val backlog: SprintBacklog = SprintBacklog()
     private var state: SprintState = CreatedState(this)
     private var members: ArrayList<TeamMember> = ArrayList()
-    private lateinit var pipelineSubscription: Flow.Subscription
     private var reviewSummary: File? = null
-
-    init {
-        this.pipeline.subscribe(this)
-    }
 
     fun getName(): String {
         return this.name
@@ -87,7 +81,6 @@ class Sprint(private val type: SprintType, private var name: String, private var
 
     fun startPipeline() {
         this.state.startPipeline()
-        this.pipeline.execute()
     }
 
     fun cancel() {
@@ -121,27 +114,6 @@ class Sprint(private val type: SprintType, private var name: String, private var
 
     fun removeTeamMember(m: TeamMember) {
         this.members.remove(m)
-    }
-
-    override fun onComplete() {
-        close()
-    }
-
-    override fun onSubscribe(subscription: Flow.Subscription) {
-        this.pipelineSubscription = subscription
-        subscription.request(1)
-    }
-
-    override fun onNext(success: Boolean) {
-        if (success) {
-            this.release()
-        } else {
-            this.pipelineSubscription.request(1)
-        }
-    }
-
-    override fun onError(throwable: Throwable?) {
-        throwable!!.printStackTrace()
     }
 
     enum class SprintType {

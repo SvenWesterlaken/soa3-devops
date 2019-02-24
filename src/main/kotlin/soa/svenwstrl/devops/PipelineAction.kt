@@ -1,32 +1,28 @@
 package soa.svenwstrl.devops
 
-import soa.svenwstrl.devops.Pipeline
-import soa.svenwstrl.devops.PipelineExecution
 
-
-abstract class PipelineAction: PipelineExecution {
+abstract class PipelineAction {
 
     // Template Method
-    override fun execute() {
+    fun execute() {
         readConfig()
         action()
-        print()
+        publishInformation()
         finish()
     }
 
     abstract fun action(): Any
 
     open fun readConfig() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
-    open fun print() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    open fun publishInformation() {
+        TODO("not implemented")
     }
 
-    //next action? Hoe gaan we dit oplossen?
-     open fun finish(): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    open fun finish() {
+        TODO("not implemented")
     }
 
 
