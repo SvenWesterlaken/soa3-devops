@@ -2,12 +2,9 @@ package soa.svenwstrl.forum
 
 import soa.svenwstrl.management.BacklogItem
 import soa.svenwstrl.management.states.backlogitem.BacklogItemState
-import soa.svenwstrl.notifications.Notifiable
 import soa.svenwstrl.users.TeamMember
 
-class Thread(private var name: String, private val backLogItem: BacklogItem, private val creator: TeamMember, private val message: String): Notifiable(), ThreadComponent {
-    private val reactions: ArrayList<ThreadComponent> = ArrayList()
-
+class Thread(private var name: String, private val backLogItem: BacklogItem, creator: TeamMember, message: String): ThreadComponent(creator, message) {
     fun getBackLogItem(): BacklogItem {
         return this.backLogItem
     }
@@ -20,26 +17,8 @@ class Thread(private var name: String, private val backLogItem: BacklogItem, pri
         this.name = n
     }
 
-    override fun getCreator(): TeamMember {
-        return this.creator
-    }
-
-    override fun getMessage(): String {
-        return this.message
-    }
-
-    override fun traverse() {
-        this.show()
-        this.reactions.forEach {c -> c.traverse() }
-    }
-
-    override fun add(c: ThreadComponent) {
-        if (backLogItem.getStateType() != BacklogItemState.Type.DONE) {
-            this.submit(this)
-            this.reactions.add(c)
-        } else {
-            TODO("Not Implemented")
-        }
+    override fun canBeEdited(): Boolean {
+        return backLogItem.getStateType() != BacklogItemState.Type.DONE
     }
 
     override fun show() {
