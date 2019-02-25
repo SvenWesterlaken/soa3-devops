@@ -1,9 +1,11 @@
 package soa.svenwstrl.forum
 
 import io.mockk.*
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 import soa.svenwstrl.management.BacklogItem
+import soa.svenwstrl.management.states.backlogitem.BacklogItemState
 import soa.svenwstrl.notifications.NotificationHandler
 import soa.svenwstrl.users.Developer
 import soa.svenwstrl.users.TeamMember
@@ -99,6 +101,26 @@ class ThreadTest {
             thread.traverse()
 
             assertThat(outContent.toString()).isEqualTo("New Thread (TestPerson): Test Message\n")
+        }
+
+        @Test
+        fun `Add reaction when closed`() {
+
+            val subscriber = spyk(NotificationHandler())
+            val reaction = mockk<ThreadReaction>(relaxed = true)
+
+            backlogItem = mockk(relaxed = true)
+
+            every { backlogItem.getStateType() } returns BacklogItemState.Type.DONE
+
+            thread = Thread("New Thread", backlogItem, creator, message)
+
+            thread.subscribe(subscriber)
+
+            assertThat(Assertions.catchThrowable { thread.add(reaction) }).isInstanceOf(NotImplementedError::class.java)
+
+            verify(exactly = 0) { subscriber.onNext(thread) }
+            confirmVerified()
         }
 
     }
