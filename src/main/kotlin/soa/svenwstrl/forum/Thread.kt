@@ -1,6 +1,7 @@
 package soa.svenwstrl.forum
 
 import soa.svenwstrl.management.BacklogItem
+import soa.svenwstrl.management.states.backlogitem.BacklogItemState
 import soa.svenwstrl.notifications.Notifiable
 import soa.svenwstrl.users.TeamMember
 
@@ -33,14 +34,16 @@ class Thread(private var name: String, private val backLogItem: BacklogItem, pri
     }
 
     override fun add(c: ThreadComponent) {
-        if (!backLogItem.isClosed) {
+        if (backLogItem.getStateType() != BacklogItemState.Type.DONE) {
             this.submit(this)
             this.reactions.add(c)
+        } else {
+            TODO("Not Implemented")
         }
     }
 
     override fun show() {
-        print("${getName()} (${getCreator()}): ${getMessage()}")
+        print("${getName()} (${getCreator().getName()}): ${getMessage()}\n")
     }
 
 
