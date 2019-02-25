@@ -3,15 +3,15 @@ package soa.svenwstrl.notifications
 class SlackNotifier(notifiable: Notifiable): Notifier(notifiable) {
 
     override fun gatherAddressInfo(): Any {
-        TODO("not implemented")
+        return "8a0d7fd810"
     }
 
     override fun composeMessage(): String {
-        TODO("not implemented")
+        return "This is an slack message"
     }
 
     override fun sendMessage() {
-        TODO("not implemented")
+        System.out.print("TOKEN: $addressInfo | $message")
     }
 
 }
