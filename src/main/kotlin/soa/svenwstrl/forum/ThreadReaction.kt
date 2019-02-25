@@ -23,7 +23,7 @@ class ThreadReaction(private val creator: TeamMember, private val message: Strin
     }
 
     override fun show() {
-        print("${getCreator()}: ${getMessage()}")
+        print("${getCreator().getName()}: ${getMessage()}\n")
     }
 
 }
