@@ -3,15 +3,15 @@ package soa.svenwstrl.notifications
 class EmailNotifier(notifiable: Notifiable): Notifier(notifiable) {
 
     override fun gatherAddressInfo(): Any {
-        TODO("not implemented")
+        return "test@email.com"
     }
 
     override fun composeMessage(): String {
-        TODO("not implemented")
+        return "This is an email message"
     }
 
     override fun sendMessage() {
-        TODO("not implemented")
+        System.out.print("TO: $addressInfo | $message")
     }
 
 }
