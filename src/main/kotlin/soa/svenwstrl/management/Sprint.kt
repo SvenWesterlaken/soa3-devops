@@ -12,7 +12,7 @@ import kotlin.collections.ArrayList
 
 class Sprint(private val type: SprintType, private var name: String, private var startDate: Date, private var endDate: Date, val pipeline: Pipeline): Notifiable() {
 
-    private val backlog: SprintBacklog = SprintBacklog()
+    private val backlog: SprintBacklog = SprintBacklog(this)
     private var state: SprintState = CreatedState(this)
     private var members: ArrayList<TeamMember> = ArrayList()
     private var reviewSummary: File? = null

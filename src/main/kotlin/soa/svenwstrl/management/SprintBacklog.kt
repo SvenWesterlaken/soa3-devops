@@ -1,6 +1,6 @@
 package soa.svenwstrl.management
 
-class SprintBacklog {
+class SprintBacklog(private val sprint: Sprint) {
     private val backlogItems: ArrayList<BacklogItem> = ArrayList()
 
     fun addItem(bli: BacklogItem) {
