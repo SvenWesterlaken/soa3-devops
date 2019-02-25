@@ -18,6 +18,14 @@ class BacklogItem(val type: BacklogItemType): Notifiable() {
         backlogItemActivities.remove(bia)
     }
 
+    fun getActivity(index: Int): BacklogItemActivity {
+        return this.backlogItemActivities[index]
+    }
+
+    fun getActivities(): ArrayList<BacklogItemActivity> {
+        return this.backlogItemActivities
+    }
+
     fun getStateType(): BacklogItemState.Type {
         return this.state.getState()
     }
