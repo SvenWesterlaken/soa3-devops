@@ -27,7 +27,7 @@ abstract class Notifiable(): SubmissionPublisher<Notifiable>() {
     }
 
     enum class Type {
-        SLACK, EMAIL
+        SLACK, EMAIL, FAX
     }
 
 }
