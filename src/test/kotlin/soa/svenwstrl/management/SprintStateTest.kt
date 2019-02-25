@@ -1,4 +1,4 @@
-package soa.svenwstrl
+package soa.svenwstrl.management
 
 import io.mockk.every
 import io.mockk.mockk
@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
-import soa.svenwstrl.management.Sprint
 import soa.svenwstrl.management.states.sprint.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
