@@ -2,7 +2,7 @@ package soa.svenwstrl.users
 
 import soa.svenwstrl.notifications.Notifiable
 
-abstract class TeamMember(private var name: String, private var notificationTypes: ArrayList<Notifiable.Type> = ArrayList()) {
+abstract class TeamMember(private var name: String, private val notificationTypes: ArrayList<Notifiable.Type> = ArrayList()) {
 
     fun setName(n: String) {
         this.name = n
