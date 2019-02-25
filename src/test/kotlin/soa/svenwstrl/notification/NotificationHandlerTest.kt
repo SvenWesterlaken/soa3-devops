@@ -68,4 +68,15 @@ class NotificationHandlerTest {
         assertThat(outContent.toString()).isEqualTo("TOKEN: 8a0d7fd810 | This is an slack message")
     }
 
+    @Test
+    fun `No Notification`() {
+        every { notifiable.getSelectedTypes() } returns arrayListOf()
+
+        val notificationHandler = spyk(NotificationHandler())
+
+        notificationHandler.onNext(notifiable)
+
+        assertThat(outContent.toString()).isEqualTo("")
+    }
+
 }
