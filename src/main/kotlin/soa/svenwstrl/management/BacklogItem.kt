@@ -7,7 +7,7 @@ import soa.svenwstrl.notifications.Notifiable
 
 class BacklogItem(val type: BacklogItemType): Notifiable() {
 
-    val backlogItemActivities: ArrayList<BacklogItemActivity> = ArrayList()
+    private val backlogItemActivities: ArrayList<BacklogItemActivity> = ArrayList()
     private var state: BacklogItemState = ToDoState(this)
 
     fun addActivity(bia: BacklogItemActivity) {
@@ -32,7 +32,6 @@ class BacklogItem(val type: BacklogItemType): Notifiable() {
 
     fun setDoing() {
         this.state.setDoing()
-
     }
 
     fun review() {
