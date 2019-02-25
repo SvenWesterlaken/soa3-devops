@@ -1,4 +1,4 @@
-package soa.svenwstrl
+package soa.svenwstrl.management
 
 import io.mockk.confirmVerified
 import io.mockk.mockk
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import soa.svenwstrl.devops.Pipeline
-import soa.svenwstrl.management.Sprint
 import soa.svenwstrl.management.states.sprint.*
 import soa.svenwstrl.users.TeamMember
 import java.io.File
