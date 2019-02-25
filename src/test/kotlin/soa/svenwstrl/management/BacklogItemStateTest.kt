@@ -1,18 +1,12 @@
-package soa.svenwstrl
+package soa.svenwstrl.management
 
 import io.mockk.*
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
-import soa.svenwstrl.management.BacklogItem
-import soa.svenwstrl.management.Sprint
 import soa.svenwstrl.management.states.backlogitem.*
-import soa.svenwstrl.management.states.sprint.FinishedState
-import soa.svenwstrl.management.states.sprint.SprintState
-import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BacklogItemStateTest {

@@ -1,4 +1,4 @@
-package soa.svenwstrl
+package soa.svenwstrl.management
 
 import io.mockk.mockk
 import org.assertj.core.api.Assertions
@@ -6,8 +6,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
-import soa.svenwstrl.management.BacklogItem
-import soa.svenwstrl.management.SprintBacklog
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class SprintBacklogTest {
