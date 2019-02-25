@@ -13,7 +13,7 @@ class SprintBacklogTest {
 
     @BeforeEach
     fun refreshSprintBacklog() {
-        this.sprintBacklog = SprintBacklog()
+        this.sprintBacklog = SprintBacklog(mockk(relaxed = true))
     }
 
     @Test

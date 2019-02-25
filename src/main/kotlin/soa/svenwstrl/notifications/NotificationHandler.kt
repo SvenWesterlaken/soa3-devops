@@ -12,6 +12,7 @@ class NotificationHandler: Subscriber<Notifiable> {
         System.out.println("Done")
     }
 
+    // Factory method
     override fun onNext(n: Notifiable) {
 
         n.getSelectedTypes().forEach { t ->
