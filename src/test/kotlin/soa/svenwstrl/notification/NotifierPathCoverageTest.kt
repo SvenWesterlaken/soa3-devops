@@ -1,15 +1,11 @@
-package soa.svenwstrl
+package soa.svenwstrl.notification
 
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
-import io.mockk.verify
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.filter.NotFilter
 import org.junit.jupiter.api.*
-import soa.svenwstrl.devops.Pipeline
-import soa.svenwstrl.devops.PipelineAction
 import soa.svenwstrl.notifications.Notifiable
 import soa.svenwstrl.notifications.NotificationHandler
 import soa.svenwstrl.notifications.Notifier
