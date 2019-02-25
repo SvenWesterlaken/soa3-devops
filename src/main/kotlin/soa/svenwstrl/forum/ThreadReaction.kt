@@ -2,24 +2,10 @@ package soa.svenwstrl.forum
 
 import soa.svenwstrl.users.TeamMember
 
-class ThreadReaction(private val creator: TeamMember, private val message: String): ThreadComponent {
-    private val reactions: ArrayList<ThreadComponent> = ArrayList()
+class ThreadReaction(creator: TeamMember, message: String, private val parent: ThreadComponent): ThreadComponent(creator, message) {
 
-    override fun getCreator(): TeamMember {
-        return this.creator
-    }
-
-    override fun getMessage(): String {
-        return this.message
-    }
-
-    override fun traverse() {
-        this.show()
-        this.reactions.forEach { c -> c.traverse() }
-    }
-
-    override fun add(c: ThreadComponent) {
-        this.reactions.add(c)
+    override fun canBeEdited(): Boolean {
+        return this.parent.canBeEdited()
     }
 
     override fun show() {
